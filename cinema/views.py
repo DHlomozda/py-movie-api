@@ -16,6 +16,7 @@ def movie_list(request):
         case "POST":
             serializer = MovieSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -29,6 +30,7 @@ def movie_detail(request, pk):
         case "PUT":
             serializer = MovieSerializer(movie, data=request.data)
             serializer.is_valid(raise_exception=True)
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         case "DELETE":
             movie.delete()
